@@ -37,7 +37,7 @@ namespace :import do
       referral_url = "#{host}/#{link.attribute('href')}"
 
       link.search('img').each do |img|
-        image_url = "#{host}#{img.attribute('src').to_s.gsub(/small\//, '')}"
+        image_url = "#{host}/#{img.attribute('src').to_s.gsub(/small\//, '')}"
         next if ImportLog.exists?(:key => "eatliver", :url => image_url)
 
         Picture.create :source_url => image_url, :referral_url => referral_url
