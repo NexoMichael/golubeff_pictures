@@ -20,4 +20,6 @@
 # Learn more: http://github.com/javan/whenever
 every 1.day do 
   rake "import:lolpix"
+  rake "import:eatliver"
+  rake "import:veryfunnypics"
 end

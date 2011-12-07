@@ -40,8 +40,6 @@ namespace :import do
         image_url = "#{host}#{img.attribute('src').to_s.gsub(/small\//, '')}"
         next if ImportLog.exists?(:key => "eatliver", :url => image_url)
 
-        puts "#{referral_url} -> #{image_url}"
-
         Picture.create :source_url => image_url, :referral_url => referral_url
         ImportLog.create :key => "eatliver", :url => image_url
       end
@@ -53,7 +51,6 @@ namespace :import do
     agent.user_agent_alias = 'Mac Safari'
     host = "http://www.veryfunnypics.com"
     page = agent.get("#{host}/index.php")
-    "/images/userUploads/End Voilence Oranges.jpg"
 
     page.search('.picBox a').each do |link|
       referral_url = "#{host}#{link.attribute('href')}"
@@ -61,8 +58,6 @@ namespace :import do
       link.search('img').each do |img|
         image_url = "#{host}#{img.attribute('src')}"
         next if ImportLog.exists?(:key => "veryfunnypics", :url => image_url)
-
-        puts "#{referral_url} -> #{image_url}"
 
         Picture.create :source_url => image_url, :referral_url => referral_url
         ImportLog.create :key => "veryfunnypics", :url => image_url
