@@ -61,7 +61,7 @@ namespace :import do
 
       link.search('img').each do |img|
         image_url = "#{host}#{img.attribute('src')}"
-        next if ImportLog.exists?(:key => "veryfunnypics", :url => image_url)
+        next if ImportLog.exists?(:key => "veryfunnypics", :url => image_url) or not image_url.end_with?(".jpg")
 
         ActiveRecord::Base.transaction do
           Picture.create :source_url => image_url, :referral_url => referral_url
