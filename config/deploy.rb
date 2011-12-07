@@ -33,7 +33,7 @@ set :use_sudo, false
 # repo details
 set :scm, :git
 #set :scm_username, "ismackmanager"
-set :repository, "git@github.com:golubeff/pictures.git"
+set :repository, "git@github.com:NexoMichael/golubeff_pictures.git"
 set :git_enable_submodules, 1
 
 # tasks
