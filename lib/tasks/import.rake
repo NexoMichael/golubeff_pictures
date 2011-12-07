@@ -21,8 +21,10 @@ namespace :import do
         image_url = "#{host}#{img.attribute('src').to_s.gsub(/_s\./, '.')}"
         next if ImportLog.exists?(:key => "lolpix", :url => image_url)
 
-        Picture.create :source_url => image_url, :referral_url => referral_url
-        ImportLog.create :key => "lolpix", :url => image_url
+        ActiveRecord::Base.transaction do
+          Picture.create :source_url => image_url, :referral_url => referral_url
+          ImportLog.create :key => "lolpix", :url => image_url
+        end
       end
     end
   end
@@ -40,8 +42,10 @@ namespace :import do
         image_url = "#{host}/#{img.attribute('src').to_s.gsub(/small\//, '')}"
         next if ImportLog.exists?(:key => "eatliver", :url => image_url)
 
-        Picture.create :source_url => image_url, :referral_url => referral_url
-        ImportLog.create :key => "eatliver", :url => image_url
+        ActiveRecord::Base.transaction do
+          Picture.create :source_url => image_url, :referral_url => referral_url
+          ImportLog.create :key => "eatliver", :url => image_url
+        end
       end
     end
   end
@@ -59,8 +63,10 @@ namespace :import do
         image_url = "#{host}#{img.attribute('src')}"
         next if ImportLog.exists?(:key => "veryfunnypics", :url => image_url)
 
-        Picture.create :source_url => image_url, :referral_url => referral_url
-        ImportLog.create :key => "veryfunnypics", :url => image_url
+        ActiveRecord::Base.transaction do
+          Picture.create :source_url => image_url, :referral_url => referral_url
+          ImportLog.create :key => "veryfunnypics", :url => image_url
+        end
       end
     end
   end
